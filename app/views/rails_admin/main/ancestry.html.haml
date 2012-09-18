@@ -1,5 +1,10 @@
 
-%nav#nav_nodes
-  = nested_tree_nodes @tree_nodes
+.row-fluid
+  .span12
+    #tree_nodes.dd
+      = nested_tree_nodes @tree_nodes
 
+
+= stylesheet_link_tag 'rails_admin/rails_admin_ancestry'
+= javascript_include_tag 'rails_admin/rails_admin_ancestry'
 
