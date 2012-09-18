@@ -1,0 +1,10 @@
+it:
+  admin:
+    actions:
+      ancestry:
+        title: "Ordinamento"
+        menu: "Ordinamento %{model_label}"
+        breadcrumb: "Ordinamento"
+        link: "Ordinamento"
+        bulk_link: "Ordinamento %{model_label_plural}"
+        done: "Salvato"
