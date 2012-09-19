@@ -1,0 +1,9 @@
+
+.row-fluid
+  .span12
+    #tree_nodes.dd{:'data-update-path' => nestable_path(model_name: @abstract_model), :'data-max-depth' => tree_max_depth}
+      = nested_tree_nodes @tree_nodes
+
+
+= stylesheet_link_tag 'rails_admin/rails_admin_nestable'
+= javascript_include_tag 'rails_admin/rails_admin_nestable'

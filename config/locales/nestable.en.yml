@@ -1,0 +1,10 @@
+en:
+  admin:
+    actions:
+      nestable:
+        title: "Sorting"
+        menu: "Sorting for %{model_label}"
+        breadcrumb: "Sorting"
+        link: "Sorting"
+        bulk_link: "Sort selected %{model_label_plural}"
+        done: "Sorted"

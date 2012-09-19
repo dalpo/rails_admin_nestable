@@ -1,5 +1,5 @@
 module RailsAdmin
-  module AncestryHelper
+  module NestableHelper
 
     def nested_tree_nodes(tree_nodes)
       tree_nodes.map do |tree_node, sub_tree_nodes|
@@ -23,6 +23,10 @@ module RailsAdmin
       content_tag :ul, class: 'inline actions' do
         menu_for :member, @abstract_model, model, true
       end
+    end
+
+    def tree_max_depth
+      ::RailsAdmin::Config.model(@abstract_model.model).nestable_max_depth || 'false'
     end
 
   end
