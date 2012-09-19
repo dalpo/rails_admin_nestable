@@ -7,11 +7,11 @@ require "rails_admin_nestable/version"
 Gem::Specification.new do |s|
   s.name        = "rails_admin_nestable"
   s.version     = RailsAdminNestable::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of RailsAdminNestable."
-  s.description = "TODO: Description of RailsAdminNestable."
+  s.authors     = ["Andrea Dal Ponte"]
+  s.email       = ["info@andreadalponte.com"]
+  s.homepage    = "https://github.com/dalpo/rails_admin_nestable"
+  s.summary     = "Organise Ancestry model into a drag and drop tree structure"
+  s.description = "Organise Ancestry model into a drag and drop tree structure"
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
 
