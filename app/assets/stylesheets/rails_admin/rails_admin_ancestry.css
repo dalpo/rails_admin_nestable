@@ -3,9 +3,23 @@
  * Nestable
  */
 
-.dd { position: relative; display: block; margin: 0; padding: 0; max-width: 600px; list-style: none; font-size: 13px; line-height: 20px; }
+.dd {
+    position: relative;
+    display: block;
+    margin: 0;
+    padding: 0;
+    /* max-width: 600px; */
+    list-style: none;
+    font-size: 13px;
+    line-height: 20px; }
 
-.dd-list { display: block; position: relative; margin: 0; padding: 0; list-style: none; }
+.dd-list {
+    display: block;
+    position: relative;
+    margin: 0;
+    padding: 0 0 0 30px;
+    list-style: none;
+}
 .dd-list .dd-list { padding-left: 30px; }
 .dd-collapsed .dd-list { display: none; }
 
@@ -13,7 +27,8 @@
 .dd-empty,
 .dd-placeholder { display: block; position: relative; margin: 0; padding: 0; min-height: 20px; font-size: 13px; line-height: 20px; }
 
-.dd-handle { display: block; height: 30px; margin: 5px 0; padding: 5px 10px; color: #333; text-decoration: none; font-weight: bold; border: 1px solid #ccc;
+.dd-handle {
+    display: block; height: 30px; margin: 5px 0; padding: 5px 10px; color: #333; text-decoration: none; font-weight: bold; border: 1px solid #ccc;
     background: #fafafa;
     background: -webkit-linear-gradient(top, #fafafa 0%, #eee 100%);
     background:    -moz-linear-gradient(top, #fafafa 0%, #eee 100%);
@@ -72,7 +87,7 @@
 
 @media only screen and (min-width: 700px) {
 
-    .dd { float: left; width: 48%; }
+    .dd { float: none; width: auto; }
     .dd + .dd { margin-left: 2%; }
 
 }
