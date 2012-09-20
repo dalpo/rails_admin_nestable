@@ -19,7 +19,8 @@ $(document).ready ->
         $.ajax
           url: $this.data('update-path'),
           type: 'POST',
-          data: tree_nodes: serialized_tree,
+          data:
+            tree_nodes: serialized_tree
           complete: (event, XMLHttpRequest, ajaxOptions) ->
             console.dir event
             console.dir XMLHttpRequest
