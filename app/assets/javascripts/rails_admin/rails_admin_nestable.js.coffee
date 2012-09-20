@@ -14,10 +14,13 @@ $(document).ready ->
     .on
       change: (event) ->
         $this = $(this)
-        serialized_tree = $this.nestable('serialize')
+        # serialized_tree = $this.parent().nestable('serialize')
+        serialized_tree = $tree_nodes.nestable('serialize')
+
+        console.dir serialized_tree
 
         $.ajax
-          url: $this.data('update-path'),
+          url: $tree_nodes.data('update-path'),
           type: 'POST',
           data:
             tree_nodes: serialized_tree
