@@ -29,12 +29,14 @@ module RailsAdmin
         register_instance_option :controller do
           Proc.new do
             def update_recoursively(tree_nodes, parent_node = nil)
+              position_field = ::RailsAdmin::Config.model(@abstract_model.model).nestable_position_field
+
               tree_nodes.each do |key, value|
                 model = @abstract_model.model.find(value['id'])
                 model.parent = parent_node if parent_node.present?
 
-                if ::RailsAdmin::Config.model(@abstract_model.model).nestable_position_field
-                  model.send("#{::RailsAdmin::Config.model(@abstract_model.model).nestable_position_field}=", (key.to_i + 1))
+                if position_field.present?
+                  model.send("#{position_field}=".to_sym, (key.to_i + 1))
                 end
 
                 model.save!(validate: false)
@@ -46,7 +48,9 @@ module RailsAdmin
             end
 
             if params['tree_nodes'].present?
-              update_recoursively params[:tree_nodes]
+              ActiveRecord::Base.transaction do
+                update_recoursively params[:tree_nodes]
+              end
               render text: 'done'
             else
               @tree_nodes = @abstract_model.model.arrange(order: ::RailsAdmin::Config.model(@abstract_model.model).nestable_position_field)
