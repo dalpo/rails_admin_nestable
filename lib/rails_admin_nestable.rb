@@ -48,10 +48,16 @@ module RailsAdmin
             end
 
             if params['tree_nodes'].present?
-              ActiveRecord::Base.transaction do
-                update_recoursively params[:tree_nodes]
+              begin
+                ActiveRecord::Base.transaction do
+                  update_recoursively params[:tree_nodes]
+                end
+                message = "<strong>#{I18n.t('admin.actions.nestable.success')}!</strong>"
+              rescue Exception => e
+                message = "<strong>#{I18n.t('admin.actions.nestable.error')}</strong>: #{e}"
               end
-              render text: 'done'
+
+              render text: message
             else
               @tree_nodes = @abstract_model.model.arrange(order: ::RailsAdmin::Config.model(@abstract_model.model).nestable_position_field)
               render action: @action.template_name

@@ -13,18 +13,22 @@ $(document).ready ->
     .nestable( $tree_nodes_options )
     .on
       change: (event) ->
-        $this = $(this)
-        # serialized_tree = $this.parent().nestable('serialize')
         serialized_tree = $tree_nodes.nestable('serialize')
-
-        console.dir serialized_tree
 
         $.ajax
           url: $tree_nodes.data('update-path'),
           type: 'POST',
           data:
             tree_nodes: serialized_tree
-          complete: (event, XMLHttpRequest, ajaxOptions) ->
-            console.dir event
-            console.dir XMLHttpRequest
-            console.dir ajaxOptions
+          success: (data) ->
+            $flash = $('<div>')
+              .addClass('nestable-flash alert')
+              .append( $('<button>').addClass('close').data('dismiss', 'alert').html('&times;') )
+              .append( $('<span>').addClass('body').html( data ) )
+
+            $('#rails_admin_nestable')
+              .append( $flash )
+
+            $flash.fadeIn(200)
+              .delay(2000).fadeOut 200, ->
+                $(this).remove()

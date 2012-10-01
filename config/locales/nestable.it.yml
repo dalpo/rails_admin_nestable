@@ -8,3 +8,5 @@ it:
         link: "Ordinamento"
         bulk_link: "Ordinamento %{model_label_plural}"
         done: "Salvato"
+        success: "Salvato"
+        error: "Errore"

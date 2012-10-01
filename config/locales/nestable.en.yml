@@ -8,3 +8,5 @@ en:
         link: "Sorting"
         bulk_link: "Sort selected %{model_label_plural}"
         done: "Sorted"
+        success: "Success"
+        error: "Error"
