@@ -1,4 +1,3 @@
-
 /**
  * Nestable
  */
@@ -152,8 +151,8 @@
 .nestable-flash {
     position: fixed;
     top: 80px;
-    width: 400px;
-    left: 50%;
-    margin-left: -200px;
+    width: auto;
+    right: 20px;
     display: none;
+    min-width: 150px;
 }
