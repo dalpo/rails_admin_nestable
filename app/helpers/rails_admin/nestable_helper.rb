@@ -1,7 +1,7 @@
 module RailsAdmin
   module NestableHelper
 
-    def nested_tree_nodes(tree_nodes)
+    def nested_tree_nodes(tree_nodes = [])
       tree_nodes.map do |tree_node, sub_tree_nodes|
         li_classes = 'dd-item dd3-item'
 
@@ -13,7 +13,10 @@ module RailsAdmin
             content+= content_tag :div, action_links(tree_node), class: 'pull-right links'
           end
 
-          output+= content_tag :ol, nested_tree_nodes(sub_tree_nodes), class: 'dd-list' if sub_tree_nodes.any?
+          if sub_tree_nodes && sub_tree_nodes.any?
+            output+= content_tag :ol, nested_tree_nodes(sub_tree_nodes), class: 'dd-list'
+          end
+
           output
         end
       end.join.html_safe
