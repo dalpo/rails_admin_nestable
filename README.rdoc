@@ -1,5 +1,0 @@
-= RailsAdminNestable
-
-Organise Ancestry model into a drag and drop tree structure.
-
-This project rocks and uses MIT-LICENSE.
