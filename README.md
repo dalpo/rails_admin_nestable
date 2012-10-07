@@ -51,6 +51,7 @@ Available options:
   * `position_field`: default `nil`, (optional)
   * `max_depth`: default `nil`, (optional)
 
+In your `config/initializers/rails_admin.rb` initializer:
 ```ruby
 RailsAdmin.config do |config|
   config.actions do
@@ -69,6 +70,7 @@ To use this configuration, you need a position field
 Available options:
   * `position_field`: default `:position`
 
+In your `config/initializers/rails_admin.rb` initializer:
 ```ruby
 RailsAdmin.config do |config|
   config.actions do
