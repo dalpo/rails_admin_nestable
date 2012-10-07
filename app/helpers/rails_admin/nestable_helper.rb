@@ -29,7 +29,7 @@ module RailsAdmin
     end
 
     def tree_max_depth
-      ::RailsAdmin::Config.model(@abstract_model.model).nestable_max_depth || 'false'
+      @nestable_conf.options[:max_depth] || 'false'
     end
 
   end

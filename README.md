@@ -43,11 +43,12 @@ end
 ## Configuration
 You could choose between two different for your model:
 
-### Nestable tree:
+### 1. Nestable tree:
 To use this configuration, you need to organize your tree model with [Ancestry](https://github.com/stefankroes/ancestry).
-Otherwise your model have to respond to the `parent` and `arrange` methods.
 
-Available options:
+Otherwise your model have to respond to the `parent`, `arrange` and `children` methods.
+
+The `nestable_tree` methods supports the following options:
   * `position_field`: default `nil`, (optional)
   * `max_depth`: default `nil`, (optional)
 
@@ -64,10 +65,11 @@ RailsAdmin.config do |config|
 end
 ```
 
-### Nestable list:
+
+### 2. Nestable list:
 To use this configuration, you need a position field
 
-Available options:
+The `nestable_list` methods supports the following options:
   * `position_field`: default `:position`
 
 In your `config/initializers/rails_admin.rb` initializer:
@@ -78,7 +80,7 @@ RailsAdmin.config do |config|
   end
 
   config.model MyModel do
-    nestable_list
+    nestable_list true
   end
 end
 ```
@@ -86,9 +88,10 @@ end
 ## Thanks
 
 * [Carlo Scortegagna](https://github.com/carloscortegagna)
+* [Andrea Zaupa](https://github.com/andreazaupa)
 * [Rails Admin](https://github.com/sferik/rails_admin)
 * [Nestable](http://dbushell.github.com/Nestable)
 
 
 
-This project rocks and uses MIT-LICENSE.
+**This project rocks and uses MIT-LICENSE.**
