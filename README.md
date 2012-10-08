@@ -41,16 +41,15 @@ end
 ```
 
 ## Configuration
-You could choose between two different for your model:
+You could choose between two different configurations for your model:
 
 ### 1. Nestable tree:
 To use this configuration, you need to organize your tree model with [Ancestry](https://github.com/stefankroes/ancestry).
-
 Otherwise your model have to respond to the `parent`, `arrange` and `children` methods.
 
 The `nestable_tree` methods supports the following options:
-  * `position_field`: default `nil`, (optional)
-  * `max_depth`: default `nil`, (optional)
+  * `position_field`: (symbol) default `nil`
+  * `max_depth`: (integer) default `nil`
 
 In your `config/initializers/rails_admin.rb` initializer:
 ```ruby
@@ -70,7 +69,7 @@ end
 To use this configuration, you need a position field
 
 The `nestable_list` methods supports the following options:
-  * `position_field`: default `:position`
+  * `position_field`: (symbol) default `:position`
 
 In your `config/initializers/rails_admin.rb` initializer:
 ```ruby
@@ -84,6 +83,10 @@ RailsAdmin.config do |config|
   end
 end
 ```
+
+## Screenshot
+
+![Nestable view](https://github.com/dalpo/rails_admin_nestable/raw/master/screenshots/nestable_tree.jpg "nestable view")
 
 ## Thanks
 
