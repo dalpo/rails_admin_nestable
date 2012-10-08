@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.summary     = "Organise Ancestry model into a drag and drop tree structure"
   s.description = "Organise Ancestry model into a drag and drop tree structure"
 
-  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
+  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
 
-  s.add_dependency "rails", "~> 3.2.8"
+  s.add_dependency "rails", "~> 3.2"
 end
