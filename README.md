@@ -59,7 +59,7 @@ RailsAdmin.config do |config|
   end
 
   config.model MyModel do
-    nestable_tree { position_field: :position, max_depth: 3 }
+    nestable_tree({ position_field: :position, max_depth: 3 })
   end
 end
 ```
