@@ -1,9 +1,8 @@
 module RailsAdminNestable
   class Engine < ::Rails::Engine
 
-    # Enabling assets precompiling
-    initializer :assets do |config|
-      Rails.application.config.assets.precompile += %w( jquery.nestable.js )
+    initializer "RailsAdminNestable precompile hook", group: :all do |app|
+      app.config.assets.precompile += %w(jquery.nestable.js)
     end
 
   end
