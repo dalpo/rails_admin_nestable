@@ -81,7 +81,7 @@ module RailsAdmin
         end
 
         register_instance_option :link_icon do
-          'icon-align-left'
+          'icon-move'
         end
 
         register_instance_option :http_methods do
