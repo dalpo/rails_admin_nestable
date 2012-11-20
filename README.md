@@ -8,7 +8,7 @@ Reorganise model data with a drag and drop tree/list structure.
 To enable rails_admin_nestable, add the following to your `Gemfile`:
 
 ```ruby
-gem "rails_admin_nestable", git: "git://github.com/dalpo/rails_admin_nestable.git"
+gem 'rails_admin_nestable', '0.0.2'
 ```
 
 Add in your `config/initializers/rails_admin.rb` initializer the configuration:
@@ -33,7 +33,7 @@ RailsAdmin.config do |config|
     # Add the nestable action for each model
     nestable do
       visible do
-        [NavNode, Product].include? bindings[:abstract_model].model
+        %w(NavNode Product).include? bindings[:abstract_model].model_name
       end
     end
   end
@@ -59,7 +59,10 @@ RailsAdmin.config do |config|
   end
 
   config.model MyModel do
-    nestable_tree({ position_field: :position, max_depth: 3 })
+    nestable_tree({ p
+      osition_field: :position,
+      max_depth: 3
+    })
   end
 end
 ```
