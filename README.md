@@ -60,7 +60,7 @@ RailsAdmin.config do |config|
 
   config.model MyModel do
     nestable_tree({
-      osition_field: :position,
+      position_field: :position,
       max_depth: 3
     })
   end
