@@ -8,7 +8,7 @@ Reorganise model data with a drag and drop tree/list structure.
 To enable rails_admin_nestable, add the following to your `Gemfile`:
 
 ```ruby
-gem 'rails_admin_nestable', '0.0.2'
+gem 'rails_admin_nestable', '0.0.3'
 ```
 
 Add in your `config/initializers/rails_admin.rb` initializer the configuration:
