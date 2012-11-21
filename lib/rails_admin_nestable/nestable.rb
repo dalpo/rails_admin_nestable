@@ -25,7 +25,11 @@ module RailsAdmin
             def update_tree(tree_nodes, parent_node = nil)
               tree_nodes.each do |key, value|
                 model = @abstract_model.model.find(value['id'])
-                model.parent = parent_node if parent_node.present?
+                if parent_node.present?
+                  model.parent = parent_node
+                else
+                  model.parent = nil
+                end
 
                 if @nestable_conf.options[:position_field].present?
                   model.send("#{@nestable_conf.options[:position_field]}=".to_sym, (key.to_i + 1))
