@@ -1,7 +1,4 @@
-//= require rails_admin/jquery.nestable.js
-//= require_self
-
-$(document).ready ->
+jQuery ->
   $tree_nodes = $('#tree_nodes')
   $tree_nodes_options = {}
   $tree_nodes_max_depth = $tree_nodes.data('max-depth')
