@@ -1,4 +1,4 @@
-//= require jquery.nestable.js
+//= require rails_admin/jquery.nestable.js
 //= require_self
 
 $(document).ready ->
