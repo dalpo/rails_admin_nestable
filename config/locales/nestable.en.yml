@@ -2,8 +2,8 @@ en:
   admin:
     actions:
       nestable:
-        title: "Sorting"
-        menu: "Sorting for %{model_label}"
+        title: "Sorting for %{model_label}"
+        menu: "Sorting"
         breadcrumb: "Sorting"
         link: "Sorting"
         bulk_link: "Sort selected %{model_label_plural}"
