@@ -15,9 +15,15 @@ module RailsAdminNestable
 
     def options
       if tree?
-        @nestable_options ||= (tree.class == Hash ? tree : {})
+        @nestable_options ||= (tree.class == Hash ? tree : {
+          enable_callback: false
+        })
       elsif list?
-        @nestable_options ||= { position_field: :position, max_depth: 1 }.merge(list.class == Hash ? list : {})
+        @nestable_options ||= {
+          position_field: :position,
+          max_depth: 1,
+          enable_callback: false
+        }.merge(list.class == Hash ? list : {})
       end
 
       @nestable_options || {}

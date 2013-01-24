@@ -48,8 +48,9 @@ To use this configuration, you need to organize your tree model with [Ancestry](
 Otherwise your model have to respond to the `parent`, `arrange` and `children` methods.
 
 The `nestable_tree` methods supports the following options:
-  * `position_field`: (symbol) default `nil`
-  * `max_depth`: (integer) default `nil`
+  * `position_field`: (symbol) default => `nil`
+  * `max_depth`: (integer) default => `nil`
+  * `enable_callback`: (boolean) default => `false`
 
 In your `config/initializers/rails_admin.rb` initializer:
 ```ruby
@@ -73,6 +74,7 @@ To use this configuration, you need a position field
 
 The `nestable_list` methods supports the following options:
   * `position_field`: (symbol) default `:position`
+  * `enable_callback`: (boolean) default => `false`
 
 In your `config/initializers/rails_admin.rb` initializer:
 ```ruby

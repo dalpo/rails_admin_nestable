@@ -35,7 +35,7 @@ module RailsAdmin
                   model.send("#{@nestable_conf.options[:position_field]}=".to_sym, (key.to_i + 1))
                 end
 
-                model.save!(validate: false)
+                model.save!(validate: @nestable_conf.options[:enable_callback])
 
                 if value.has_key?('children')
                   update_tree(value['children'], model)
@@ -47,7 +47,7 @@ module RailsAdmin
               model_list.each do |key, value|
                 model = @abstract_model.model.find(value['id'])
                 model.send("#{@nestable_conf.options[:position_field]}=".to_sym, (key.to_i + 1))
-                model.save!(validate: false)
+                model.save!(validate: @nestable_conf.options[:enable_callback])
               end
             end
 
