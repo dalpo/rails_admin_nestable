@@ -69,14 +69,12 @@ module RailsAdmin
 
               render text: message
             else
-              model_scope = @abstract_model.model.unscoped
-
               if @nestable_conf.tree?
-                @tree_nodes = model_scope.arrange(order: @nestable_conf.options[:position_field])
+                @tree_nodes = @abstract_model.model.arrange(order: @nestable_conf.options[:position_field])
               end
 
               if @nestable_conf.list?
-                @tree_nodes = model_scope.order(@nestable_conf.options[:position_field])
+                @tree_nodes = @abstract_model.model.order(@nestable_conf.options[:position_field])
               end
 
               render action: @action.template_name
