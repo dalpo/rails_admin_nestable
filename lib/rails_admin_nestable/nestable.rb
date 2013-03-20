@@ -89,6 +89,11 @@ module RailsAdmin
         register_instance_option :http_methods do
           [:get, :post]
         end
+
+        register_instance_option :visible? do
+          current_model = ::RailsAdmin::Config.model(bindings[:abstract_model])
+          authorized? && (current_model.nestable_tree || current_model.nestable_list)
+        end
       end
     end
   end
