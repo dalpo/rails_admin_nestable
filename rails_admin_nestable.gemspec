@@ -10,11 +10,14 @@ Gem::Specification.new do |s|
   s.authors     = ["Andrea Dal Ponte"]
   s.email       = ["info@andreadalponte.com"]
   s.homepage    = "https://github.com/dalpo/rails_admin_nestable"
-  s.summary     = "Organise Ancestry model into a drag and drop tree structure"
-  s.description = "Organise Ancestry model into a drag and drop tree structure"
+  s.summary     = "Rails Admin plugin to organise Tree/List models with a simple drag and drop custom action"
+  s.description = "Rails Admin plugin to organise Tree/List models with a simple drag and drop custom action"
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
 
-  s.add_dependency "rails", "~> 3.2"
+  s.add_dependency "rails", ">= 3.1"
   s.add_dependency "rails_admin"
+  s.add_dependency "haml-rails"
+  s.add_dependency "coffee-rails"
+  s.add_dependency "sass-rails"
 end
