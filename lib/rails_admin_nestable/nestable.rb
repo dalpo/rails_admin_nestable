@@ -4,7 +4,10 @@ module RailsAdmin
       class Nestable < Base
         RailsAdmin::Config::Actions.register(self)
 
-        # Is the action acting on the root level (Example: /admin/contact)
+        register_instance_option :pjax? do
+          false
+        end
+
         register_instance_option :root? do
           false
         end
@@ -13,7 +16,6 @@ module RailsAdmin
           true
         end
 
-        # Is the action on an object scope (Example: /admin/team/1/edit)
         register_instance_option :member? do
           false
         end
@@ -70,11 +72,11 @@ module RailsAdmin
               render text: message
             else
               if @nestable_conf.tree?
-                @tree_nodes = list_entries(@model_config, :index, nil, nil).arrange(order: @nestable_conf.options[:position_field])
+                @tree_nodes = list_entries(@model_config, :nestable, nil, nil).arrange(order: @nestable_conf.options[:position_field])
               end
 
               if @nestable_conf.list?
-                @tree_nodes = list_entries(@model_config, :index, nil, nil).order(@nestable_conf.options[:position_field])
+                @tree_nodes = list_entries(@model_config, :nestable, nil, nil).order(@nestable_conf.options[:position_field])
               end
 
               render action: @action.template_name

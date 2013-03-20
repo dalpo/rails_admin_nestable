@@ -1,6 +1,7 @@
 # Rails Admin Nestable
 
 Reorganise model data with a drag and drop tree/list structure.
+
 Sample demo available at: https://github.com/dalpo/rails_admin_nestable_demo
 
 
@@ -31,7 +32,7 @@ RailsAdmin.config do |config|
     history_show
     show_in_app
 
-    # Add the nestable action for each model
+    # Add the nestable action for configured models
     nestable
   end
 end
@@ -85,6 +86,35 @@ RailsAdmin.config do |config|
   end
 end
 ```
+
+## Authorization with [CanCan](https://github.com/ryanb/cancan)
+
+Sample ability:
+```ruby
+class Ability
+  include CanCan::Ability
+
+  def initialize(user)
+    user ||= User.new
+
+    if user.admin?
+      can :access, :rails_admin
+      can :dashboard
+
+      if user.role? :superadmin
+        can :manage, :all
+      end
+
+      if user.role? :editor
+        can :edit, :all
+        can :nestable, :all
+      end
+    end
+  end
+end
+
+```
+
 
 ## Screenshot
 
