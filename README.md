@@ -1,6 +1,7 @@
 # Rails Admin Nestable
 
 Reorganise model data with a drag and drop tree/list structure.
+Sample demo available at: https://github.com/dalpo/rails_admin_nestable_demo
 
 
 ## Installation
@@ -31,11 +32,7 @@ RailsAdmin.config do |config|
     show_in_app
 
     # Add the nestable action for each model
-    nestable do
-      visible do
-        %w(NavNode Product).include? bindings[:abstract_model].model_name
-      end
-    end
+    nestable
   end
 end
 ```
