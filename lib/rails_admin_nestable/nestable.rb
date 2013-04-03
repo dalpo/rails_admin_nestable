@@ -27,6 +27,7 @@ module RailsAdmin
             def update_tree(tree_nodes, parent_node = nil)
               tree_nodes.each do |key, value|
                 model = @abstract_model.model.find(value['id'])
+
                 if parent_node.present?
                   model.parent = parent_node
                 else
@@ -72,11 +73,11 @@ module RailsAdmin
               render text: message
             else
               if @nestable_conf.tree?
-                @tree_nodes = list_entries(@model_config, :nestable, nil, nil).arrange(order: @nestable_conf.options[:position_field])
+                @tree_nodes = @abstract_model.model.arrange(order: @nestable_conf.options[:position_field])
               end
 
               if @nestable_conf.list?
-                @tree_nodes = list_entries(@model_config, :nestable, nil, nil).reorder(@nestable_conf.options[:position_field])
+                @tree_nodes = @abstract_model.modelorder(@nestable_conf.options[:position_field])
               end
 
               render action: @action.template_name
