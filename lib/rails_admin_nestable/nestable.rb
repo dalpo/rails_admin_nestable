@@ -77,7 +77,7 @@ module RailsAdmin
               end
 
               if @nestable_conf.list?
-                @tree_nodes = @abstract_model.modelorder(@nestable_conf.options[:position_field])
+                @tree_nodes = @abstract_model.model.order(@nestable_conf.options[:position_field])
               end
 
               render action: @action.template_name
