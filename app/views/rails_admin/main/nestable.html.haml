@@ -1,9 +1,12 @@
 .row-fluid
   .span12#rails_admin_nestable
+    %label{:class => 'checkbox inline' }
+      %input{ :type => 'checkbox' }= t('admin.actions.nestable.live_update')
     #tree_nodes.dd{:'data-update-path' => nestable_path(model_name: @abstract_model), :'data-max-depth' => tree_max_depth}
       %ol.dd-list
         = nested_tree_nodes @tree_nodes
-
+    .form-actions
+      %button{ :type => 'submit', :class => 'btn btn-small btn-primary' }= t('admin.actions.nestable.update')
 
 = stylesheet_link_tag 'rails_admin/rails_admin_nestable'
 = javascript_include_tag 'rails_admin/jquery.nestable'
