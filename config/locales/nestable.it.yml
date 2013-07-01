@@ -10,5 +10,5 @@ it:
         done: "Salvato"
         success: "Salvato"
         error: "Errore"
-        update: "Update"
-        live_update: "Live update"
+        update: "Aggiorna"
+        live_update: "Aggiornamento automatico"
