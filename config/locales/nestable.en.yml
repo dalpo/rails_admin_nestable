@@ -10,3 +10,5 @@ en:
         done: "Sorted"
         success: "Success"
         error: "Error"
+        update: "Update"
+        live_update: "Live update"
