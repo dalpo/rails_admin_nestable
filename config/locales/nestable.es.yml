@@ -9,7 +9,7 @@ es:
         link: "Ordenación"
         bulk_link: "Seleccionar ordenados %{model_label_plural}"
         done: "Ordenado"
-        success: "Éxito"
+        success: "Actualizado con éxito"
         error: "Error"
         update: "Actualizar"
         live_update: "Actualizar en vivo"
