@@ -1,0 +1,15 @@
+# encoding: utf-8
+es:
+  admin:
+    actions:
+      nestable:
+        title: "Ordenación para %{model_label}"
+        menu: "Ordenación"
+        breadcrumb: "Ordenación"
+        link: "Ordenación"
+        bulk_link: "Seleccionar ordenados %{model_label_plural}"
+        done: "Ordenado"
+        success: "Actualizado con éxito"
+        error: "Error"
+        update: "Actualizar"
+        live_update: "Actualizar en vivo"
