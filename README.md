@@ -73,6 +73,7 @@ To use this configuration, you need a position field
 The `nestable_list` methods supports the following options:
   * `position_field`: (symbol) default `:position`
   * `enable_callback`: (boolean) default => `false`
+  * `scope`: (symbol|proc) default `nil`, must be a `ActiveRecord::Relation` object of models
 
 In your `config/initializers/rails_admin.rb` initializer:
 ```ruby
