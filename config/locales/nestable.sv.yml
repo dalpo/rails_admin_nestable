@@ -1,0 +1,14 @@
+sv:
+  admin:
+    actions:
+      nestable:
+        title: "Sortering för %{model_label}"
+        menu: "Sortering"
+        breadcrumb: "Sortering"
+        link: "Sortering"
+        bulk_link: "Vald sortering %{model_label_plural}"
+        done: "Sorterad"
+        success: "Sparad"
+        error: "Fel"
+        update: "Uppdatera"
+        live_update: "Uppdatera i realtid"
