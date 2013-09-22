@@ -12,6 +12,7 @@ Gem::Specification.new do |s|
   s.homepage    = "https://github.com/dalpo/rails_admin_nestable"
   s.summary     = "Reorganise model data with a drag and drop tree/list structure"
   s.description = "Rails Admin plugin to organise Tree/List models with a simple drag and drop custom action"
+  s.license     = 'MIT'
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
 
