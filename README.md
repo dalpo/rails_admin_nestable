@@ -143,7 +143,7 @@ Submitting a Pull Request:
 * [Nestable](http://dbushell.github.com/Nestable)
 * [To see the generous people who have contributed code, take a look at the contributors list](https://github.com/dalpo/rails_admin_nestable/graphs/contributors)
 
-
+## License
 **This project rocks and uses MIT-LICENSE.**
 
 Copyright 2013 Andrea Dal Ponte
