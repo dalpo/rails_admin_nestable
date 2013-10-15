@@ -4,6 +4,7 @@ Reorganise model data with a drag and drop tree/list structure.
 
 Sample demo available at: https://github.com/dalpo/rails_admin_nestable_demo
 
+[![Gem Version](https://badge.fury.io/rb/rails_admin_nestable.png)](http://badge.fury.io/rb/rails_admin_nestable)
 
 ## Installation
 
