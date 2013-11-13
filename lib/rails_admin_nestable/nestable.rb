@@ -72,12 +72,25 @@ module RailsAdmin
 
               render text: message
             else
+              scope = begin
+                case @nestable_conf.options[:scope].class.to_s
+                when 'Proc'
+                  @nestable_conf.options[:scope].call
+                when 'Symbol'
+                  @abstract_model.model.public_send(@nestable_conf.options[:scope])
+                else
+                  nil
+                end
+              end
+
+              query = @abstract_model.model.scoped.merge(scope)
+
               if @nestable_conf.tree?
-                @tree_nodes = @abstract_model.model.arrange(order: @nestable_conf.options[:position_field])
+                @tree_nodes = query.arrange(order: @nestable_conf.options[:position_field])
               end
 
               if @nestable_conf.list?
-                @tree_nodes = @abstract_model.model.order(@nestable_conf.options[:position_field])
+                @tree_nodes = query.order(@nestable_conf.options[:position_field])
               end
 
               render action: @action.template_name
