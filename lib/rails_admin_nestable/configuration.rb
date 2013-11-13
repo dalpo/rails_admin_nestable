@@ -2,7 +2,7 @@ module RailsAdminNestable
   class Configuration
 
     TREE_DEFAULT_OPTIONS = { enable_callback: false }
-    LIST_DEFAULT_OPTIONS = { position_field: :position, max_depth: 1, enable_callback: false }
+    LIST_DEFAULT_OPTIONS = { position_field: :position, max_depth: 1, enable_callback: false, scope: nil }
 
     def initialize(abstract_model)
       @abstract_model = abstract_model

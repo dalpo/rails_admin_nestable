@@ -77,7 +77,17 @@ module RailsAdmin
               end
 
               if @nestable_conf.list?
-                @tree_nodes = @abstract_model.model.order(@nestable_conf.options[:position_field])
+                scope = begin
+                  case @nestable_conf.options[:scope].class.to_s
+                  when 'Proc'
+                    @nestable_conf.options[:scope].call
+                  when 'Symbol'
+                    @abstract_model.model.public_send(@nestable_conf.options[:scope])
+                  else
+                    nil
+                  end
+                end
+                @tree_nodes = @abstract_model.model.order(@nestable_conf.options[:position_field]).merge(scope)
               end
 
               render action: @action.template_name
