@@ -23,10 +23,11 @@ module RailsAdmin
         register_instance_option :controller do
           Proc.new do |klass|
             @nestable_conf = ::RailsAdminNestable::Configuration.new @abstract_model
+            current_model = @abstract_model.model
 
             def update_tree(tree_nodes, parent_node = nil)
               tree_nodes.each do |key, value|
-                model = @abstract_model.model.find(value['id'].to_i)
+                model = current_model.find(value['id'].to_i)
 
                 if parent_node.present?
                   model.parent = parent_node
@@ -48,7 +49,7 @@ module RailsAdmin
 
             def update_list(model_list)
               model_list.each do |key, value|
-                model = @abstract_model.model.find(value['id'].to_i)
+                model = current_model.find(value['id'].to_i)
                 model.send("#{@nestable_conf.options[:position_field]}=".to_sym, (key.to_i + 1))
                 model.save!(validate: @nestable_conf.options[:enable_callback])
               end
@@ -77,13 +78,14 @@ module RailsAdmin
                 when 'Proc'
                   @nestable_conf.options[:scope].call
                 when 'Symbol'
-                  @abstract_model.model.public_send(@nestable_conf.options[:scope])
+                  current_model.public_send(@nestable_conf.options[:scope])
                 else
                   nil
                 end
               end
 
-              query = @abstract_model.model.scoped.merge(scope)
+              # query = current_model.scoped.merge(scope)
+              query = list_entries(@model_config, :nestable, scope, false)
 
               if @nestable_conf.tree?
                 @tree_nodes = query.arrange(order: @nestable_conf.options[:position_field])

@@ -75,7 +75,7 @@ To use this configuration, you need a position field
 The `nestable_list` methods supports the following options:
   * `position_field`: (symbol) default `:position`
   * `enable_callback`: (boolean) default => `false`
-  * `scope`: (symbol|proc) default => `nil`, must be a `ActiveRecord::Relation` object of models
+  * `scope`: (symbol | proc) default => `nil`, must be a `ActiveRecord::Relation` object of models
 
 In your `config/initializers/rails_admin.rb` initializer:
 ```ruby
@@ -144,7 +144,7 @@ Submitting a Pull Request:
 * [Andrea Zaupa](https://github.com/andreazaupa)
 * [Rails Admin](https://github.com/sferik/rails_admin)
 * [Nestable](http://dbushell.github.com/Nestable)
-* [To see the generous people who have contributed code, take a look at the contributors list](https://github.com/dalpo/rails_admin_nestable/graphs/contributors)
+* [To see the generous people who have contributed code, take a look at the contributors page](https://github.com/dalpo/rails_admin_nestable/graphs/contributors)
 
 ## License
 **This project rocks and uses MIT-LICENSE.**
