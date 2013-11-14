@@ -23,11 +23,11 @@ module RailsAdmin
         register_instance_option :controller do
           Proc.new do |klass|
             @nestable_conf = ::RailsAdminNestable::Configuration.new @abstract_model
-            current_model = @abstract_model.model
 
+            # Methods
             def update_tree(tree_nodes, parent_node = nil)
               tree_nodes.each do |key, value|
-                model = current_model.find(value['id'].to_i)
+                model = @abstract_model.model.find(value['id'].to_i)
 
                 if parent_node.present?
                   model.parent = parent_node
@@ -49,13 +49,13 @@ module RailsAdmin
 
             def update_list(model_list)
               model_list.each do |key, value|
-                model = current_model.find(value['id'].to_i)
+                model = @abstract_model.model.find(value['id'].to_i)
                 model.send("#{@nestable_conf.options[:position_field]}=".to_sym, (key.to_i + 1))
                 model.save!(validate: @nestable_conf.options[:enable_callback])
               end
             end
 
-            if params['tree_nodes'].present?
+            if request.post? && params['tree_nodes'].present?
               begin
                 ActiveRecord::Base.transaction do
                   if @nestable_conf.tree?
@@ -72,20 +72,21 @@ module RailsAdmin
               end
 
               render text: message
-            else
+            end
+
+            if request.get?
               scope = begin
                 case @nestable_conf.options[:scope].class.to_s
                 when 'Proc'
                   @nestable_conf.options[:scope].call
                 when 'Symbol'
-                  current_model.public_send(@nestable_conf.options[:scope])
+                  @abstract_model.model.public_send(@nestable_conf.options[:scope])
                 else
                   nil
                 end
               end
 
-              # query = current_model.scoped.merge(scope)
-              query = list_entries(@model_config, :nestable, scope, false)
+              query = list_entries(@model_config, :nestable, false, false).reorder(nil).merge(scope)
 
               if @nestable_conf.tree?
                 @tree_nodes = query.arrange(order: @nestable_conf.options[:position_field])

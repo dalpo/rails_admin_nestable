@@ -50,7 +50,7 @@ The `nestable_tree` methods supports the following options:
   * `position_field`: (symbol) default => `nil`
   * `max_depth`: (integer) default => `nil`
   * `enable_callback`: (boolean) default => `false`
-  * `scope`: (symbol|proc) default => `nil`, must be a `ActiveRecord::Relation` object of models
+  * `scope`: (symbol | proc) default => `nil`, must be a `ActiveRecord::Relation` object of models
 
 In your `config/initializers/rails_admin.rb` initializer:
 ```ruby
