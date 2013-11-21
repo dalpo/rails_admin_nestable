@@ -1,0 +1,14 @@
+de:
+  admin:
+    actions:
+      nestable:
+        title: "%{model_label} sortieren"
+        menu: "Sortieren"
+        breadcrumb: "Sortieren"
+        link: "Sortieren"
+        bulk_link: "%{model_label_plural} sortieren"
+        done: "Sortiert"
+        success: "Sortierung gespeichert"
+        error: "Fehler"
+        update: "Speichern"
+        live_update: "Automatisch speichern"
