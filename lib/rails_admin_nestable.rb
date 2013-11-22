@@ -1,3 +1,4 @@
+require 'rails'
 require 'rails_admin_nestable/engine'
 
 module RailsAdminNestable
