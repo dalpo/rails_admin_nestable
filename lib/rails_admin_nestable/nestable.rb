@@ -87,13 +87,14 @@ module RailsAdmin
               end
 
               query = list_entries(@model_config, :nestable, false, false).reorder(nil).merge(scope)
+              position_field = @nestable_conf.options[:position_field]
 
               if @nestable_conf.tree?
-                @tree_nodes = query.arrange(order: @nestable_conf.options[:position_field])
+                @tree_nodes = position_field.present?? query.arrange(order: position_field) : query.arrange
               end
 
               if @nestable_conf.list?
-                @tree_nodes = query.order(@nestable_conf.options[:position_field])
+                @tree_nodes = query.order(position_field)
               end
 
               render action: @action.template_name
