@@ -26,8 +26,9 @@ module RailsAdmin
 
             # Methods
             def update_tree(tree_nodes, parent_node = nil)
+              # binding.pry
               tree_nodes.each do |key, value|
-                model = @abstract_model.model.find(value['id'].to_i)
+                model = @abstract_model.model.find(value['id'])
 
                 if parent_node.present?
                   model.parent = parent_node
@@ -49,7 +50,7 @@ module RailsAdmin
 
             def update_list(model_list)
               model_list.each do |key, value|
-                model = @abstract_model.model.find(value['id'].to_i)
+                model = @abstract_model.model.find(value['id'])
                 model.send("#{@nestable_conf.options[:position_field]}=".to_sym, (key.to_i + 1))
                 model.save!(validate: @nestable_conf.options[:enable_callback])
               end
@@ -57,15 +58,15 @@ module RailsAdmin
 
             if request.post? && params['tree_nodes'].present?
               begin
-                ActiveRecord::Base.transaction do
-                  if @nestable_conf.tree?
-                    update_tree params[:tree_nodes]
-                  end
-
-                  if @nestable_conf.list?
-                    update_list params[:tree_nodes]
-                  end
+                # ActiveRecord::Base.transaction do
+                if @nestable_conf.tree?
+                  update_tree params[:tree_nodes]
                 end
+
+                if @nestable_conf.list?
+                  update_list params[:tree_nodes]
+                end
+                # end
                 message = "<strong>#{I18n.t('admin.actions.nestable.success')}!</strong>"
               rescue Exception => e
                 message = "<strong>#{I18n.t('admin.actions.nestable.error')}</strong>: #{e}"
@@ -86,14 +87,12 @@ module RailsAdmin
                 end
               end
 
-              query = list_entries(@model_config, :nestable, false, false).reorder(nil).merge(scope)
+              query = list_entries(@model_config, :nestable, false, false)#.merge(scope)#reorder(nil).merge(scope)
 
-              if @nestable_conf.tree?
-                @tree_nodes = query.arrange(order: @nestable_conf.options[:position_field])
-              end
-
-              if @nestable_conf.list?
-                @tree_nodes = query.order(@nestable_conf.options[:position_field])
+              @tree_nodes = if @nestable_conf.tree?
+                query.arrange(order: @nestable_conf.options[:position_field])
+              elsif @nestable_conf.list?
+                query.order_by(@nestable_conf.options[:position_field] => 1)
               end
 
               render action: @action.template_name
