@@ -5,7 +5,7 @@ module RailsAdmin
         RailsAdmin::Config::Actions.register(self)
 
         register_instance_option :pjax? do
-          false
+          true
         end
 
         register_instance_option :root? do
@@ -23,49 +23,38 @@ module RailsAdmin
         register_instance_option :controller do
           Proc.new do |klass|
             @nestable_conf = ::RailsAdminNestable::Configuration.new @abstract_model
+            @options = @nestable_conf.options
+            @adapter = @abstract_model.adapter
 
             # Methods
             def update_tree(tree_nodes, parent_node = nil)
               tree_nodes.each do |key, value|
-                model = @abstract_model.model.find(value['id'].to_i)
-
-                if parent_node.present?
-                  model.parent = parent_node
-                else
-                  model.parent = nil
-                end
-
-                if @nestable_conf.options[:position_field].present?
-                  model.send("#{@nestable_conf.options[:position_field]}=".to_sym, (key.to_i + 1))
-                end
-
-                model.save!(validate: @nestable_conf.options[:enable_callback])
-
-                if value.has_key?('children')
-                  update_tree(value['children'], model)
-                end
+                model = @abstract_model.model.find(value['id'].to_s)
+                model.parent = parent_node || nil
+                model.send("#{@options[:position_field]}=".to_sym, (key.to_i + 1)) if @options[:position_field].present?
+                model.save!(validate: @options[:enable_callback])
+                update_tree(value['children'], model) if value.has_key?('children')
               end
             end
 
             def update_list(model_list)
               model_list.each do |key, value|
-                model = @abstract_model.model.find(value['id'].to_i)
-                model.send("#{@nestable_conf.options[:position_field]}=".to_sym, (key.to_i + 1))
-                model.save!(validate: @nestable_conf.options[:enable_callback])
+                model = @abstract_model.model.find(value['id'].to_s)
+                model.send("#{@options[:position_field]}=".to_sym, (key.to_i + 1))
+                model.save!(validate: @options[:enable_callback])
               end
             end
 
             if request.post? && params['tree_nodes'].present?
               begin
-                ActiveRecord::Base.transaction do
-                  if @nestable_conf.tree?
-                    update_tree params[:tree_nodes]
-                  end
+                update = ->{
+                  update_tree params[:tree_nodes] if @nestable_conf.tree?
+                  update_list params[:tree_nodes] if @nestable_conf.list?
+                }
 
-                  if @nestable_conf.list?
-                    update_list params[:tree_nodes]
-                  end
-                end
+                ActiveRecord::Base.transaction { update.call } if @adapter == :active_record
+                update.call if @adapter == :mongoid
+
                 message = "<strong>#{I18n.t('admin.actions.nestable.success')}!</strong>"
               rescue Exception => e
                 message = "<strong>#{I18n.t('admin.actions.nestable.error')}</strong>: #{e}"
@@ -75,26 +64,25 @@ module RailsAdmin
             end
 
             if request.get?
-              scope = begin
-                case @nestable_conf.options[:scope].class.to_s
+              query = list_entries(@model_config, :nestable, false, false).reorder(nil)
+
+              case @options[:scope].class.to_s
                 when 'Proc'
-                  @nestable_conf.options[:scope].call
+                  query.merge(@options[:scope].call)
                 when 'Symbol'
-                  @abstract_model.model.public_send(@nestable_conf.options[:scope])
+                  query.merge(@abstract_model.model.public_send(@options[:scope]))
+              end
+
+              if @nestable_conf.tree?
+                @tree_nodes = if @options[:position_field].present?
+                  query.arrange(order: @options[:position_field])
                 else
-                  nil
+                  query.arrange
                 end
               end
 
-              query = list_entries(@model_config, :nestable, false, false).reorder(nil).merge(scope)
-              position_field = @nestable_conf.options[:position_field]
-
-              if @nestable_conf.tree?
-                @tree_nodes = position_field.present?? query.arrange(order: position_field) : query.arrange
-              end
-
               if @nestable_conf.list?
-                @tree_nodes = query.order(position_field)
+                @tree_nodes = query.order("#{@options[:position_field]} ASC")
               end
 
               render action: @action.template_name
