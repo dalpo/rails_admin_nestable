@@ -25,7 +25,7 @@ jQuery ->
   $tree_nodes_max_depth = $tree_nodes.data('max-depth')
   $live_update = $('#rails_admin_nestable input[type=checkbox]')
   $update_button = $('#rails_admin_nestable button')
-  live_update_mode = $live_update.prop('checked')
+  live_update_mode = ($live_update.prop('checked') == undefined) ? true : false
   $('#rails_admin_nestable button').prop('disabled', $live_update.prop('checked'))
 
   $live_update.change ->
