@@ -105,6 +105,10 @@ module RailsAdmin
         register_instance_option :link_icon do
           'icon-move'
         end
+        
+        register_instance_option :pjax? do
+          true
+        end
 
         register_instance_option :http_methods do
           [:get, :post]
