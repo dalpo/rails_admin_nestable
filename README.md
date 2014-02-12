@@ -51,6 +51,7 @@ The `nestable_tree` methods supports the following options:
   * `max_depth`: (integer) default => `nil`
   * `enable_callback`: (boolean) default => `false`
   * `scope`: (symbol | proc) default => `nil`
+  * `live_update`: (boolean | :only) default => true (:only is for live updating only)
 
 In your `config/initializers/rails_admin.rb` initializer:
 ```ruby
@@ -76,6 +77,7 @@ The `nestable_list` methods supports the following options:
   * `position_field`: (symbol) default `:position`
   * `enable_callback`: (boolean) default => `false`
   * `scope`: (symbol | proc) default => `nil`
+  * `live_update`: (boolean | :only) default => true (:only is for live updating only)
 
 In your `config/initializers/rails_admin.rb` initializer:
 ```ruby
