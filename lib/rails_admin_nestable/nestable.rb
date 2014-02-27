@@ -5,7 +5,7 @@ module RailsAdmin
         RailsAdmin::Config::Actions.register(self)
 
         register_instance_option :pjax? do
-          false
+          true
         end
 
         register_instance_option :root? do
@@ -26,23 +26,23 @@ module RailsAdmin
             position_field = @nestable_conf.options[:position_field]
             enable_callback = @nestable_conf.options[:enable_callback]
             nestable_scope = @nestable_conf.options[:scope]
+            @options = @nestable_conf.options
+            @adapter = @abstract_model.adapter
 
             # Methods
             def update_tree(tree_nodes, position_field, enable_callback, parent_node = nil)
               tree_nodes.each do |key, value|
-                model = @abstract_model.model.find(value['id'].to_i)
-                model.parent = parent_node.present? ? parent_node : nil
-
+                model = @abstract_model.model.find(value['id'].to_s)
+                model.parent = parent_node || nil
                 model.send("#{position_field}=".to_sym, (key.to_i + 1)) if position_field.present?
                 model.save!(validate: enable_callback)
-
-                update_tree(value['children'], position_field, enable_callback, model) if value.has_key?('children')
+                update_tree(value['children'], model) if value.has_key?('children')
               end
             end
 
             def update_list(model_list, position_field, enable_callback)
               model_list.each do |key, value|
-                model = @abstract_model.model.find(value['id'])
+                model = @abstract_model.model.find(value['id'].to_s)
                 model.send("#{position_field}=".to_sym, (key.to_i + 1))
                 model.save!(validate: enable_callback)
               end
@@ -50,8 +50,13 @@ module RailsAdmin
 
             if request.post? && params['tree_nodes'].present?
               begin
-                update_tree(params[:tree_nodes], position_field, enable_callback) if @nestable_conf.tree?
-                update_list(params[:tree_nodes], position_field, enable_callback) if @nestable_conf.list?
+                update = ->{
+                  update_tree params[:tree_nodes] if @nestable_conf.tree?
+                  update_list params[:tree_nodes] if @nestable_conf.list?
+                }
+
+                ActiveRecord::Base.transaction { update.call } if @adapter == :active_record
+                update.call if @adapter == :mongoid
 
                 message = "<strong>#{I18n.t('admin.actions.nestable.success')}!</strong>"
               rescue Exception => e
@@ -62,23 +67,25 @@ module RailsAdmin
             end
 
             if request.get?
-              scope = begin
-                case nestable_scope.class.to_s
+              query = list_entries(@model_config, :nestable, false, false).reorder(nil)
+
+              case @options[:scope].class.to_s
                 when 'Proc'
-                  nestable_scope.call
+                  query.merge(@options[:scope].call)
                 when 'Symbol'
-                  @abstract_model.model.public_send(nestable_scope)
+                  query.merge(@abstract_model.model.public_send(@options[:scope]))
+              end
+
+              if @nestable_conf.tree?
+                @tree_nodes = if @options[:position_field].present?
+                  query.arrange(order: @options[:position_field])
                 else
-                  nil
+                  query.arrange
                 end
               end
 
-              query = list_entries(@model_config, :nestable, false, false).reorder(nil).merge(scope)
-
-              @tree_nodes = if @nestable_conf.tree?
-                query.arrange(order: position_field)
-              elsif @nestable_conf.list?
-                query.order(position_field)
+              if @nestable_conf.list?
+                @tree_nodes = query.order("#{@options[:position_field]} ASC")
               end
 
               render action: @action.template_name

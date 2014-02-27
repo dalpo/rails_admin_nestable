@@ -43,14 +43,15 @@ end
 You could choose between two different configurations for your model:
 
 ### 1. Nestable tree:
-To use this configuration, you need to organize your tree model with [Ancestry](https://github.com/stefankroes/ancestry).
+To use this configuration, you need to organize your tree model with [Ancestry](https://github.com/stefankroes/ancestry) or [Mongoid Ancestry](https://github.com/skyeagle/mongoid-ancestry).
 Otherwise your model have to respond to the `parent`, `arrange` and `children` methods.
 
 The `nestable_tree` methods supports the following options:
   * `position_field`: (symbol) default => `nil`
   * `max_depth`: (integer) default => `nil`
   * `enable_callback`: (boolean) default => `false`
-  * `scope`: (symbol | proc) default => `nil`, must be a `ActiveRecord::Relation` object of models
+  * `scope`: (symbol | proc) default => `nil`
+  * `live_update`: (boolean | :only) default => true (:only is for live updating only)
 
 In your `config/initializers/rails_admin.rb` initializer:
 ```ruby
@@ -75,7 +76,8 @@ To use this configuration, you need a position field
 The `nestable_list` methods supports the following options:
   * `position_field`: (symbol) default `:position`
   * `enable_callback`: (boolean) default => `false`
-  * `scope`: (symbol | proc) default => `nil`, must be a `ActiveRecord::Relation` object of models
+  * `scope`: (symbol | proc) default => `nil`
+  * `live_update`: (boolean | :only) default => true (:only is for live updating only)
 
 In your `config/initializers/rails_admin.rb` initializer:
 ```ruby
@@ -149,7 +151,7 @@ Submitting a Pull Request:
 ## License
 **This project rocks and uses MIT-LICENSE.**
 
-Copyright 2013 Andrea Dal Ponte
+Copyright 2014 Andrea Dal Ponte, Oleg Popadiuk
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
