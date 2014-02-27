@@ -26,8 +26,7 @@ module RailsAdminNestable
       @nestable_options || {}
     end
 
-  protected
-
+    protected
     def tree_options
       tree.class == Hash ? TREE_DEFAULT_OPTIONS.merge(tree) : TREE_DEFAULT_OPTIONS
     end

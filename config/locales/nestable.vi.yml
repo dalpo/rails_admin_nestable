@@ -1,0 +1,14 @@
+vi:
+  admin:
+    actions:
+      nestable:
+        title: "Sắp xếp cho %{model_label}"
+        menu: "Tạo Menu"
+        breadcrumb: "Tạo menu"
+        link: "Tạo menu"
+        bulk_link: "Sắp xếp những %{model_label_plural} đã chọn"
+        done: "Đã sắp xếp"
+        success: "Thành công"
+        error: "Lỗi"
+        update: "Cập nhập"
+        live_update: "Cập nhật trực tiếp"
