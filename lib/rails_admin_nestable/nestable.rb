@@ -23,28 +23,28 @@ module RailsAdmin
         register_instance_option :controller do
           Proc.new do |klass|
             @nestable_conf = ::RailsAdminNestable::Configuration.new @abstract_model
-            position_field = @nestable_conf.options[:position_field]
-            enable_callback = @nestable_conf.options[:enable_callback]
-            nestable_scope = @nestable_conf.options[:scope]
+            @position_field = @nestable_conf.options[:position_field]
+            @enable_callback = @nestable_conf.options[:enable_callback]
+            @nestable_scope = @nestable_conf.options[:scope]
             @options = @nestable_conf.options
             @adapter = @abstract_model.adapter
 
             # Methods
-            def update_tree(tree_nodes, position_field, enable_callback, parent_node = nil)
+            def update_tree(tree_nodes, parent_node = nil)
               tree_nodes.each do |key, value|
                 model = @abstract_model.model.find(value['id'].to_s)
                 model.parent = parent_node || nil
-                model.send("#{position_field}=".to_sym, (key.to_i + 1)) if position_field.present?
-                model.save!(validate: enable_callback)
+                model.send("#{@position_field}=".to_sym, (key.to_i + 1)) if @position_field.present?
+                model.save!(validate: @enable_callback)
                 update_tree(value['children'], model) if value.has_key?('children')
               end
             end
 
-            def update_list(model_list, position_field, enable_callback)
+            def update_list(model_list)
               model_list.each do |key, value|
                 model = @abstract_model.model.find(value['id'].to_s)
-                model.send("#{position_field}=".to_sym, (key.to_i + 1))
-                model.save!(validate: enable_callback)
+                model.send("#{@position_field}=".to_sym, (key.to_i + 1))
+                model.save!(validate: @enable_callback)
               end
             end
 
