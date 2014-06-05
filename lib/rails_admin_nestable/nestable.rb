@@ -94,7 +94,7 @@ module RailsAdmin
         end
 
         register_instance_option :link_icon do
-          'icon-th-list'
+          'icon-move fa fa-arrows'
         end
 
         register_instance_option :http_methods do
