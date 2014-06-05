@@ -1,10 +1,11 @@
 # Rails Admin Nestable
 
-Reorganise model data with a drag and drop tree/list structure.
+RailsAdmin Drag and drop tree view for Ancestry gem
 
 Sample demo available at: https://github.com/dalpo/rails_admin_nestable_demo
 
 [![Gem Version](https://badge.fury.io/rb/rails_admin_nestable.png)](http://badge.fury.io/rb/rails_admin_nestable)
+[![Code Climate](https://codeclimate.com/github/dalpo/rails_admin_nestable.png)](https://codeclimate.com/github/dalpo/rails_admin_nestable)
 
 ## Installation
 
@@ -151,7 +152,7 @@ Submitting a Pull Request:
 ## License
 **This project rocks and uses MIT-LICENSE.**
 
-Copyright 2014 Andrea Dal Ponte, Oleg Popadiuk
+Copyright 2014 Andrea Dal Ponte
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -171,4 +172,3 @@ NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
 LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-

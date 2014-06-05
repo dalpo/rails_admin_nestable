@@ -10,8 +10,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Andrea Dal Ponte"]
   s.email       = ["info@andreadalponte.com"]
   s.homepage    = "https://github.com/dalpo/rails_admin_nestable"
-  s.summary     = "Reorganise model data with a drag and drop tree/list structure"
-  s.description = "Rails Admin plugin to organise Tree/List models with a simple drag and drop custom action"
+  s.summary     = "RailsAdmin Drag and drop tree view for Ancestry gem"
+  s.description = "RailsAdmin Drag and drop tree view for Ancestry gem with ActiveRecord and MongoID"
   s.license     = 'MIT'
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
