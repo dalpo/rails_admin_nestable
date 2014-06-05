@@ -17,31 +17,30 @@ module RailsAdminNestable
     end
 
     def options
-      if tree?
-        @nestable_options ||= self.tree_options
-      elsif list?
-        @nestable_options ||= self.list_options
+      @nestable_options ||= begin
+        options = self.tree_options if tree?
+        options = self.list_options if list?
+        options || {}
       end
-
-      @nestable_options || {}
     end
 
     protected
-    def tree_options
-      tree.class == Hash ? TREE_DEFAULT_OPTIONS.merge(tree) : TREE_DEFAULT_OPTIONS
-    end
 
-    def list_options
-      LIST_DEFAULT_OPTIONS.merge(list.class == Hash ? list : {})
-    end
+      def tree_options
+        tree.class == Hash ? TREE_DEFAULT_OPTIONS.merge(tree) : TREE_DEFAULT_OPTIONS
+      end
 
-    def tree
-      @nestable_tree ||= ::RailsAdmin::Config.model(@abstract_model.model).nestable_tree
-    end
+      def list_options
+        LIST_DEFAULT_OPTIONS.merge(list.class == Hash ? list : {})
+      end
 
-    def list
-      @nestable_list ||= ::RailsAdmin::Config.model(@abstract_model.model).nestable_list
-    end
+      def tree
+        @nestable_tree ||= ::RailsAdmin::Config.model(@abstract_model.model).nestable_tree
+      end
+
+      def list
+        @nestable_list ||= ::RailsAdmin::Config.model(@abstract_model.model).nestable_list
+      end
 
   end
 end
