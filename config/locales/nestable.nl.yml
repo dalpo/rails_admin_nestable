@@ -1,0 +1,14 @@
+nl:
+  admin:
+    actions:
+      nestable:
+        title: "%{model_label} sorteren"
+        menu: "Sorteren"
+        breadcrumb: "Sorteren"
+        link: "Sorteren"
+        bulk_link: "%{model_label_plural} sorteren"
+        done: "Gesorteerd"
+        success: "Succes"
+        error: "Error"
+        update: "Opslaan"
+        live_update: "Automatisch opslaan"
