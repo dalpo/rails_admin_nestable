@@ -71,9 +71,9 @@ module RailsAdmin
 
               case @options[:scope].class.to_s
                 when 'Proc'
-                  query.merge(@options[:scope].call)
+                  query.merge!(@options[:scope].call)
                 when 'Symbol'
-                  query.merge(@abstract_model.model.public_send(@options[:scope]))
+                  query.merge!(@abstract_model.model.public_send(@options[:scope]))
               end
 
               if @nestable_conf.tree?
