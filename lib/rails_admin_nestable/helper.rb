@@ -19,7 +19,7 @@ module RailsAdminNestable
     end
 
     def action_links(model)
-      content_tag :ul, class: 'inline actions' do
+      content_tag :ul, class: 'inline list-inline' do
         menu_for :member, @abstract_model, model, true
       end
     end
