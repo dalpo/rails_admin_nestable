@@ -11,13 +11,13 @@ Gem::Specification.new do |s|
   s.email       = ["info@andreadalponte.com"]
   s.homepage    = "https://github.com/dalpo/rails_admin_nestable"
   s.summary     = "RailsAdmin Drag and drop tree view for Ancestry gem"
-  s.description = "RailsAdmin Drag and drop tree view for Ancestry gem with ActiveRecord and MongoID"
+  s.description = "RailsAdmin Drag and drop tree view for Ancestry gem with ActiveRecord or MongoID"
   s.license     = 'MIT'
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
 
   s.add_dependency "rails", ">= 3.1"
-  s.add_dependency "rails_admin"
+  s.add_dependency "rails_admin", "<= 0.6.5"
   s.add_dependency "haml-rails"
   s.add_dependency "coffee-rails"
   s.add_dependency "sass-rails"
