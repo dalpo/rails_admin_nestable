@@ -12,7 +12,7 @@ Sample demo available at: https://github.com/dalpo/rails_admin_nestable_demo
 To enable rails_admin_nestable, add the following to your `Gemfile`:
 
 ```ruby
-gem 'rails_admin_nestable', '~> 0.3.0'
+gem 'rails_admin_nestable', '~> 0.3.1'
 ```
 
 Add in your `config/initializers/rails_admin.rb` initializer the configuration:
