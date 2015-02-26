@@ -1,0 +1,14 @@
+ru:
+  admin:
+    actions:
+      nestable:
+        title: "Сортировка по %{model_label}"
+        menu: "Сортировка"
+        breadcrumb: "Сортировка"
+        link: "Сортировка"
+        bulk_link: "Сортировать выбранные %{model_label_plural}"
+        done: "Отсортирован"
+        success: "Успешно"
+        error: "Ошибка"
+        update: "Обновление"
+        live_update: "Живое обновление"
