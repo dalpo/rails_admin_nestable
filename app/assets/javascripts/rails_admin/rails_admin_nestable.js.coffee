@@ -9,7 +9,7 @@ jQuery ->
         tree_nodes: serialized_tree
       success: (data) ->
         $flash = $('<div>')
-          .addClass('nestable-flash alert')
+          .addClass('nestable-flash alert alert-success')
           .append( $('<button>').addClass('close').data('dismiss', 'alert').html('&times;') )
           .append( $('<span>').addClass('body').html( data ) )
 
