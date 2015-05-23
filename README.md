@@ -1,6 +1,6 @@
 # Rails Admin Nestable
 
-RailsAdmin Drag and drop tree view for Ancestry gem
+RailsAdmin Drag and drop tree view for `Ancestry` and `mongoid-ancestry` gem
 
 Sample demo available at: https://github.com/dalpo/rails_admin_nestable_demo
 
@@ -12,7 +12,7 @@ Sample demo available at: https://github.com/dalpo/rails_admin_nestable_demo
 To enable rails_admin_nestable, add the following to your `Gemfile`:
 
 ```ruby
-gem 'rails_admin_nestable', '~> 0.3.1'
+gem 'rails_admin_nestable', '~> 0.3.2'
 ```
 
 Add in your `config/initializers/rails_admin.rb` initializer the configuration:
@@ -152,7 +152,7 @@ Submitting a Pull Request:
 ## License
 **This project rocks and uses MIT-LICENSE.**
 
-Copyright 2014 Andrea Dal Ponte
+Copyright 2015 Andrea Dal Ponte
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
