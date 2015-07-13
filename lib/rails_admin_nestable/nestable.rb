@@ -23,7 +23,7 @@ module RailsAdmin
         register_instance_option :controller do
           Proc.new do |klass|
             @nestable_conf = ::RailsAdminNestable::Configuration.new @abstract_model
-            @position_field = @nestable_conf.options[:position_field]
+            @position_field = @nestable_conf.options[:position_field].to_s.split('.').last
             @enable_callback = @nestable_conf.options[:enable_callback]
             @nestable_scope = @nestable_conf.options[:scope]
             @options = @nestable_conf.options
