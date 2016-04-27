@@ -1,10 +1,12 @@
 #rails_admin_nestable
   - if [false, :only].exclude?(@options[:live_update])
-    .form-group
-      .checkbox
-        %label
-          = check_box_tag 'rails_admin_nestable_live_update'
-          = t('admin.actions.nestable.live_update')
+    .row
+      .col-sm-12
+        .form-group
+          .checkbox
+            %label
+              = check_box_tag 'rails_admin_nestable_live_update'
+              = t('admin.actions.nestable.live_update')
   .form-group
     #tree_nodes.dd{ data: { update_path: nestable_path(model_name: @abstract_model), max_depth: tree_max_depth } }
       %ol.dd-list
