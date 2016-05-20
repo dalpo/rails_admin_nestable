@@ -1,0 +1,14 @@
+fr:
+  admin:
+    actions:
+      nestable:
+        title: "Trier les %{model_label_plural}"
+        menu: "Trier"
+        breadcrumb: "Triage"
+        link: "Triage"
+        bulk_link: "Trier la selection de %{model_label_plural}"
+        done: "Trié"
+        success: "Succès"
+        error: "Erreur"
+        update: "Mettre à jour"
+        live_update: "Mise à jour auto."
