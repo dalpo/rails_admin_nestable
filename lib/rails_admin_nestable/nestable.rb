@@ -63,7 +63,7 @@ module RailsAdmin
                 message = "<strong>#{I18n.t('admin.actions.nestable.error')}</strong>: #{e}"
               end
 
-              render text: message
+              render plain: message
             end
 
             if request.get?
