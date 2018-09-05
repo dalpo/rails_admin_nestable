@@ -1,6 +1,7 @@
 module RailsAdminNestable
   module Helper
     def nested_tree_nodes(tree_nodes = [])
+      return if tree_nodes.nil?
       tree_nodes.map do |tree_node, sub_tree_nodes|
         li_classes = 'dd-item dd3-item'
 
