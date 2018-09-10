@@ -1,17 +1,20 @@
 #rails_admin_nestable
   - if [false, :only].exclude?(@options[:live_update])
+    .row
+      .form-group
+        .checkbox
+          %label
+            = check_box_tag 'rails_admin_nestable_live_update'
+            = t('admin.actions.nestable.live_update')
+  .row
     .form-group
-      .checkbox
-        %label
-          = check_box_tag 'rails_admin_nestable_live_update'
-          = t('admin.actions.nestable.live_update')
-  .form-group
-    #tree_nodes.dd{ data: { update_path: nestable_path(model_name: @abstract_model), max_depth: tree_max_depth } }
-      %ol.dd-list
-        = nested_tree_nodes @tree_nodes
+      #tree_nodes.dd{ data: { update_path: nestable_path(model_name: @abstract_model), max_depth: tree_max_depth } }
+        %ol.dd-list
+          = nested_tree_nodes @tree_nodes
   - if @options[:live_update] != :only
-    .form-group
-      %button.btn.btn-primary{ type: 'submit' }= t('admin.actions.nestable.update')
+    .row
+      .form-group
+        %button.btn.btn-primary{ type: 'submit' }= t('admin.actions.nestable.update')
 
 = stylesheet_link_tag    'rails_admin/rails_admin_nestable'
 = javascript_include_tag 'rails_admin/jquery.nestable'
