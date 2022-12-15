@@ -71,7 +71,7 @@ module RailsAdmin
 
               case @options[:scope].class.to_s
                 when 'Proc'
-                  query.merge!(@options[:scope].call)
+                  query.merge!(@options[:scope].call(params))
                 when 'Symbol'
                   query.merge!(@abstract_model.model.public_send(@options[:scope]))
               end
