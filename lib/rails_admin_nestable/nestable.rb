@@ -5,7 +5,7 @@ module RailsAdmin
         RailsAdmin::Config::Actions.register(self)
 
         register_instance_option :pjax? do
-          true
+          false
         end
 
         register_instance_option :root? do
