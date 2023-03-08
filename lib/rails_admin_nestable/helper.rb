@@ -5,11 +5,12 @@ module RailsAdminNestable
       tree_nodes.map do |tree_node, sub_tree_nodes|
         li_classes = 'dd-item dd3-item'
 
-        content_tag :li, class: li_classes, :'data-id' => tree_node.id do
+        content_tag :li, class: li_classes, :'data-id' => tree_node.id, :'data-type' => tree_node.class.name do
 
-          output = content_tag :div, 'drag', class: 'dd-handle dd3-handle'
+          output = content_tag(:div, 'drag', class: 'dd-handle dd3-handle')
+
           output += content_tag :div, class: 'dd3-content' do
-            content = link_to object_label(tree_node), edit_path(@abstract_model, tree_node.id)
+            content = link_to object_label(tree_node), edit_path(RailsAdmin::AbstractModel.new(tree_node.class), tree_node.id)
             content += content_tag :div, action_links(tree_node), class: 'pull-right links'
           end
 
