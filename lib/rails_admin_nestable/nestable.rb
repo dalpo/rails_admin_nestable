@@ -32,7 +32,8 @@ module RailsAdmin
             # Methods
             def update_tree(tree_nodes, parent_node = nil)
               tree_nodes.each do |key, value|
-                model = @abstract_model.model.find(value['id'].to_s)
+                type_class = value['type'].constantize rescue @abstract_model.model
+                model = type_class.find(value['id'].to_s)
                 model.parent = parent_node || nil
                 model.send("#{@position_field}=".to_sym, (key.to_i + 1)) if @position_field.present?
                 model.save!(validate: @enable_callback)
